@@ -23,6 +23,8 @@ function Header() {
                         <li><a href="#" className="hover:underline">Discussions</a></li>
                         <li><a href="#" className="hover:underline">Events</a></li>
                         <li><a href="#" className="hover:underline">Profile</a></li>
+                        <li><a href="#" className="hover:underline">Profile</a></li>
+                        <li><a href="#" className="hover:underline">Profile</a></li>
                     </ul>
                 </nav>
             </div>

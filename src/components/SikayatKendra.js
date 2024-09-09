@@ -257,8 +257,17 @@ const SikayatKendra = () => {
                                 </ul>
                             </div>
                         ) : (
+
+
+
                             <div className="bg-white p-6 rounded-lg shadow-lg">
-                                <h2 className="text-2xl font-semibold mb-4">Submit a Complaint</h2>
+                                <div className='flex justify-between'>
+                                    <h2 className="text-2xl font-semibold mb-4">Submit a Complaint</h2>
+                                    <div>If You are not getting response in two working days Contact :
+                                        +91 xxxxxxxxxx </div>
+                                </div>
+
+
                                 <form onSubmit={handleSubmitComplaint}>
                                     <textarea
                                         value={complaint}

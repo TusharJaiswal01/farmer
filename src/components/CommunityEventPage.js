@@ -1,8 +1,52 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
+const translations = {
+    en: {
+        communityEvents: 'Community Events',
+        eventInfo: 'Stay informed about upcoming events, workshops, and meet-ups in your area.',
+        exploreEvents: 'Explore Events',
+        addNewEvent: 'Add a New Event',
+        eventTitle: 'Event Title',
+        date: 'Date',
+        location: 'Location',
+        description: 'Description',
+        eventThumbnail: 'Event Thumbnail',
+        addEvent: 'Add Event',
+        upcomingEvents: 'Upcoming Events',
+        noEvents: 'No events added yet.',
+    },
+    hi: {
+        communityEvents: 'समुदाय कार्यक्रम',
+        eventInfo: 'अपने क्षेत्र में आगामी कार्यक्रमों, कार्यशालाओं और मिलन-सम्मेलनों के बारे में सूचित रहें।',
+        exploreEvents: 'कार्यक्रमों की खोज करें',
+        addNewEvent: 'नया कार्यक्रम जोड़ें',
+        eventTitle: 'कार्यक्रम शीर्षक',
+        date: 'तारीख',
+        location: 'स्थान',
+        description: 'विवरण',
+        eventThumbnail: 'कार्यक्रम थंबनेल',
+        addEvent: 'कार्यक्रम जोड़ें',
+        upcomingEvents: 'आगामी कार्यक्रम',
+        noEvents: 'अभी तक कोई कार्यक्रम जोड़ा नहीं गया है।',
+    },
+    mr: {
+        communityEvents: 'समुदाय कार्यक्रम',
+        eventInfo: 'तुमच्या क्षेत्रातील आगामी कार्यक्रम, कार्यशाळा आणि मीटअप्सबद्दल माहिती ठेवा.',
+        exploreEvents: 'कार्यक्रम पाहा',
+        addNewEvent: 'नवीन कार्यक्रम जोडा',
+        eventTitle: 'कार्यक्रमाचे शीर्षक',
+        date: 'तारीख',
+        location: 'स्थळ',
+        description: 'वर्णन',
+        eventThumbnail: 'कार्यक्रमाचे थंबनेल',
+        addEvent: 'कार्यक्रम जोडा',
+        upcomingEvents: 'आगामी कार्यक्रम',
+        noEvents: 'आतापर्यंत कोणतेही कार्यक्रम जोडलेले नाहीत.',
+    },
+};
+
 function CommunityEventPage() {
-    // State to manage events
     const [events, setEvents] = useState([]);
     const [newEvent, setNewEvent] = useState({
         title: '',
@@ -11,8 +55,8 @@ function CommunityEventPage() {
         description: '',
         thumbnail: ''
     });
+    const [language, setLanguage] = useState('hi'); // Set default language to Hindi
 
-    // Retrieve events from localStorage on component mount
     useEffect(() => {
         const storedEvents = JSON.parse(localStorage.getItem('communityEvents'));
         if (storedEvents) {
@@ -20,7 +64,6 @@ function CommunityEventPage() {
         }
     }, []);
 
-    // Handle input changes
     const handleChange = (e) => {
         if (e.target.name === 'thumbnail') {
             const file = e.target.files[0];
@@ -34,7 +77,6 @@ function CommunityEventPage() {
         }
     };
 
-    // Handle form submission
     const handleSubmit = (e) => {
         e.preventDefault();
         const updatedEvents = [...events, newEvent];
@@ -49,40 +91,64 @@ function CommunityEventPage() {
         });
     };
 
+    const t = translations[language]; // Get translations based on selected language
+
     return (
         <div className="p-6 bg-gradient-to-r from-green-100 to-green-200 min-h-screen">
+            {/* Language Selector */}
+            <div className="mb-6">
+                <button
+                    onClick={() => setLanguage('en')}
+                    className="mr-2 p-2 border border-gray-300 rounded"
+                >
+                    English
+                </button>
+                <button
+                    onClick={() => setLanguage('hi')}
+                    className="mr-2 p-2 border border-gray-300 rounded"
+                >
+                    हिंदी
+                </button>
+                {/* <button
+                    onClick={() => setLanguage('mr')}
+                    className="p-2 border border-gray-300 rounded"
+                >
+                    मराठी
+                </button> */}
+            </div>
+
             {/* Community Events Section */}
             <section className="bg-gradient-to-r from-green-600 to-green-500 p-6 rounded-lg shadow-lg text-white mb-6">
-                <h3 className="font-semibold mb-4 text-3xl">Community Events</h3>
+                <h3 className="font-semibold mb-4 text-3xl">{t.communityEvents}</h3>
                 <p className="text-white mb-4">
-                    Stay informed about upcoming events, workshops, and meet-ups in your area.
+                    {t.eventInfo}
                 </p>
                 <Link
                     to="/event-detail"
                     className="bg-yellow-400 text-gray-800 px-6 py-3 rounded-lg font-semibold hover:bg-yellow-300 transition"
                 >
-                    Explore Events
+                    {t.exploreEvents}
                 </Link>
             </section>
 
             {/* Event Form */}
             <section className="bg-white p-6 rounded-lg shadow-lg mb-6">
-                <h4 className="font-semibold text-2xl mb-4">Add a New Event</h4>
+                <h4 className="font-semibold text-2xl mb-4">{t.addNewEvent}</h4>
                 <form onSubmit={handleSubmit} className="space-y-4">
                     <div>
-                        <label className="block text-gray-700">Event Title</label>
+                        <label className="block text-gray-700">{t.eventTitle}</label>
                         <input
                             type="text"
                             name="title"
                             value={newEvent.title}
                             onChange={handleChange}
                             className="w-full p-2 border rounded-lg"
-                            placeholder="Enter event title"
+                            placeholder={t.eventTitle}
                             required
                         />
                     </div>
                     <div>
-                        <label className="block text-gray-700">Date</label>
+                        <label className="block text-gray-700">{t.date}</label>
                         <input
                             type="date"
                             name="date"
@@ -93,30 +159,30 @@ function CommunityEventPage() {
                         />
                     </div>
                     <div>
-                        <label className="block text-gray-700">Location</label>
+                        <label className="block text-gray-700">{t.location}</label>
                         <input
                             type="text"
                             name="location"
                             value={newEvent.location}
                             onChange={handleChange}
                             className="w-full p-2 border rounded-lg"
-                            placeholder="Enter event location"
+                            placeholder={t.location}
                             required
                         />
                     </div>
                     <div>
-                        <label className="block text-gray-700">Description</label>
+                        <label className="block text-gray-700">{t.description}</label>
                         <textarea
                             name="description"
                             value={newEvent.description}
                             onChange={handleChange}
                             className="w-full p-2 border rounded-lg"
-                            placeholder="Enter event description"
+                            placeholder={t.description}
                             required
                         ></textarea>
                     </div>
                     <div>
-                        <label className="block text-gray-700">Event Thumbnail</label>
+                        <label className="block text-gray-700">{t.eventThumbnail}</label>
                         <input
                             type="file"
                             name="thumbnail"
@@ -129,14 +195,14 @@ function CommunityEventPage() {
                         type="submit"
                         className="w-full bg-green-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-green-500 transition"
                     >
-                        Add Event
+                        {t.addEvent}
                     </button>
                 </form>
             </section>
 
             {/* Display Events */}
             <section className="mt-6">
-                <h4 className="font-semibold text-2xl mb-4">Upcoming Events</h4>
+                <h4 className="font-semibold text-2xl mb-4">{t.upcomingEvents}</h4>
                 {events.length > 0 ? (
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                         {events.map((event, index) => (
@@ -156,7 +222,7 @@ function CommunityEventPage() {
                         ))}
                     </div>
                 ) : (
-                    <p className="text-gray-700">No events added yet.</p>
+                    <p className="text-gray-700">{t.noEvents}</p>
                 )}
             </section>
         </div>
