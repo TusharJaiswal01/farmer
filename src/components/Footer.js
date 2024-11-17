@@ -5,7 +5,7 @@ const Footer = () => {
     return (
         <footer className="bg-gray-800 text-white py-6">
             <div className="container mx-auto flex flex-wrap items-center justify-between">
-                {/* Left Section with Logo */}
+                {/* Left Section with logo Logo */}
                 <div className="flex flex-col items-start w-full md:w-1/2 lg:w-1/2 mb-4 lg:mb-0">
                     <img src="/path/to/logo.png" alt="Logo" className="h-16 mb-4" />
                     <p className="text-center lg:text-left mb-4 lg:mb-0">
