@@ -26,7 +26,7 @@ const Footer = () => {
                             <FaFacebookF size={30} />
                         </a>
                         <a href="https://linkedin.com" className="text-gray-400 hover:text-white" aria-label="LinkedIn">
-                            <FaLinkedinIn size={30} />
+                            <FaLinkedinIn size={30} /> 
                         </a>
                     </div>
                 </div>
