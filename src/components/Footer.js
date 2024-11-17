@@ -13,7 +13,7 @@ const Footer = () => {
                     </p>
                 </div>
 
-                {/* Right Section witth Social Media Icons */}
+                {/* Right Section with Social Media Icons */}
                 <div className="flex justify-center w-full md:w-1/2 lg:w-1/2">
                     <div className="flex space-x-4">
                         <a href="https://instagram.com" className="text-gray-400 hover:text-white" aria-label="Instagram">
