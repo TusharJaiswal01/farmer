@@ -6,7 +6,7 @@ function Header() {
 
     const toggleMenu = () => {
         setIsOpen(!isOpen);
-    };
+    }; 
 
     return (
         <header className="bg-green-900 text-white p-4">
